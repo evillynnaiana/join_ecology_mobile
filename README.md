@@ -11,3 +11,7 @@ Nesta documentação, você conhecerá o **Join Ecology**, um projeto que transf
 
 O Join Ecology é um sistema inovador destinado a governos, que permite gerenciar descontos no IPTU com base no cuidado que os cidadãos dedicam às áreas verdes. Essa abordagem não apenas incentiva a preservação ambiental, mas também promove uma comunidade mais unida e responsável.
 
+### Protótipos de telas:
+https://www.figma.com/design/mca9zLuVilaGbTh8WLbGk2/Join-Ecology?node-id=68-2&m=dev&t=8VUNGjbVopK4mu5A-1
+
+

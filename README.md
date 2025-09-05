@@ -28,3 +28,21 @@ A seguir, apresento um demonstrativo da estrutura de banco de dados que o sistem
 Abaixo, segue uma ilustração da estrutura do banco de dados:
 
 ![Ambiente Destruído](https://github.com/evillynnaiana/joinecology/blob/148cc3e9f3f7095f47ee8c68e426d1e6a69cd9df/estrutura_banco_dados.png)  
+
+### Cronograma do Projeto
+
+| Data       | Atividade                                                                 | Marco Principal |
+|------------|----------------------------------------------------------------------------|-----------------|
+| **07/09/2025** | Estudo da estrutura do projeto, definição das telas e navegação.          | Planejamento inicial |
+| **08/09/2025** | Criação da estrutura no banco de dados (tabelas e configurações).         | Banco de dados pronto |
+| **15/09/2025** | Implementar login com verificação de perfil (adm / user).                 | Login funcional |
+| **22/09/2025** | CRUD de criação das áreas (usuário normal).                              | CRUD inicial pronto |
+| **29/09/2025** | Tela de cases de sucesso (visual, versão inicial apenas).                 | Parte visual entregue |
+| **06/10/2025** | Testes iniciais dos recursos do usuário (fluxo real e salvamento no BD).  | Testes parciais |
+| **13/10/2025** | Semana dedicada a correções de bugs e ajustes necessários.                | Ajustes de bugs |
+| **20/10/2025** | Implementar tela de histórico de modificações de fotos.                   | Histórico pronto |
+| **27/10/2025** | Tela de listagem do administrador.                                       |  Lista ADM pronta |
+| **03/11/2025** | Tela de edição do administrador.                                         |  Edição ADM pronta |
+| **10/11/2025** | Testes finais de integração de todas as aplicações.                      |  Testes finais |
+| **17/11/2025** | Finalização de testes, ajustes finais e entrega.                         |  Entrega do projeto |
+| **Extra**   | Preparar documentação técnica e guia de uso (README, manual, prints, etc.). |  Documentação pronta |

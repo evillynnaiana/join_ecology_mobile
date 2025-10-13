@@ -1,5 +1,5 @@
-import { Image } from 'expo-image';
 import { Platform, StyleSheet } from 'react-native';
+import { Image } from 'expo-image';
 
 import { Collapsible } from '@/components/ui/collapsible';
 import { ExternalLink } from '@/components/external-link';
@@ -30,7 +30,9 @@ export default function TabTwoScreen() {
           Explore
         </ThemedText>
       </ThemedView>
+
       <ThemedText>This app includes example code to help you get started.</ThemedText>
+
       <Collapsible title="File-based routing">
         <ThemedText>
           This app has two screens:{' '}
@@ -45,17 +47,19 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
+
       <Collapsible title="Android, iOS, and web support">
         <ThemedText>
           You can open this project on Android, iOS, and the web. To open the web version, press{' '}
           <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
         </ThemedText>
       </Collapsible>
+
       <Collapsible title="Images">
         <ThemedText>
           For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
           <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
+          different screen densities.
         </ThemedText>
         <Image
           source={require('@/assets/images/react-logo.png')}
@@ -65,6 +69,7 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
+
       <Collapsible title="Light and dark mode components">
         <ThemedText>
           This template has light and dark mode support. The{' '}
@@ -75,6 +80,7 @@ export default function TabTwoScreen() {
           <ThemedText type="link">Learn more</ThemedText>
         </ExternalLink>
       </Collapsible>
+
       <Collapsible title="Animations">
         <ThemedText>
           This template includes an example of an animated component. The{' '}

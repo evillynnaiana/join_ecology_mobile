@@ -11,13 +11,17 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { CaseCard } from '../components/CaseCard';
 
-export default function HomeScreen() {
+export default function CasesScreen() {
   const router = useRouter();
 
   const handleNavigation = (screen: string) => {
-    if (screen === 'cases') {
-      router.push('/cases');
+    if (screen === 'home') {
+      router.push('/home');
+    } else if (screen === 'areas') {
+      // router.push('/areas');
+      console.log('Navegando para Minhas áreas');
     } else {
       console.log(`Navegando para: ${screen}`);
     }
@@ -28,7 +32,7 @@ export default function HomeScreen() {
       <StatusBar barStyle="light-content" backgroundColor="#5a8147" />
       
       <SafeAreaView style={styles.safeArea} edges={['top']}>
-    
+        
         <View style={styles.header}>
           <View style={styles.logoContainer}>
             <Image
@@ -45,65 +49,43 @@ export default function HomeScreen() {
             <Ionicons name="settings-outline" size={24} color="#fff" />
           </TouchableOpacity>
         </View>
-
-
-        <View style={styles.greetingContainer}>
-          <Text style={styles.greetingText}>Olá, Evillyn</Text>
-        </View>
       </SafeAreaView>
 
+    
       <ScrollView 
         style={styles.contentContainer}
         contentContainerStyle={styles.contentContainerInner}
+        showsVerticalScrollIndicator={false}
       >
-        <View style={styles.illustrationContainer}>
-          
-          <View style={styles.personContainer}>
-            <Image
-              
-              style={styles.personIllustration}
-              resizeMode="contain"
-            />
-          </View>
-          
-         
-          <View style={styles.documentPreview}>
-            <View style={styles.documentHeader}>
-              <View style={styles.documentDot} />
-              <View style={styles.documentDotGray} />
-            </View>
-            
-            <View style={styles.documentItem}>
-              <View style={styles.itemDot} />
-              <View style={styles.itemLine} />
-              <View style={styles.itemLineLong} />
-            </View>
-            
-            <View style={styles.documentItem}>
-              <View style={styles.itemDot} />
-              <View style={styles.itemLineShort} />
-            </View>
-            
-            <View style={styles.documentItem}>
-              <View style={styles.itemDot} />
-              <View style={styles.itemLineShort} />
-            </View>
-            
-            <View style={styles.documentFooter} />
-          </View>
-        </View>
+        {/* Card de Case de Sucesso */}
+        <CaseCard
+          title="Família Souza"
+          location="Jardim Comunitário - Belo Horizonte/MG"
+          description="Transformaram um espaço de descarte de entulhos em um lindo jardim comunitário com árvores frutíferas. Resultado: 40% de desconto no IPTU!"
+          image={require('../assets/images/family_case.png')}
+        />
+
+        
+        {<CaseCard
+          title="Ação entre amigos"
+          location="Praça da Fé"
+          description="Uma praça livre de lixos, para as familias aproveitarem"
+          image={require('../assets/images/case_02.jpg')}
+        /> }
+
+        
+        <View style={styles.bottomSpacing} />
       </ScrollView>
 
-     
+    
       <TouchableOpacity 
         style={styles.fab}
-        onPress={() => handleNavigation('add')}
+        onPress={() => console.log('Adicionar novo case')}
         activeOpacity={0.8}
       >
         <Ionicons name="add" size={32} color="#fff" />
       </TouchableOpacity>
 
-  
       <SafeAreaView style={styles.bottomNavSafeArea} edges={['bottom']}>
         <View style={styles.bottomNav}>
           <TouchableOpacity
@@ -121,7 +103,7 @@ export default function HomeScreen() {
           </TouchableOpacity>
           
           <TouchableOpacity
-            style={styles.navItem}
+            style={[styles.navItem, styles.navItemActive]}
             onPress={() => handleNavigation('cases')}
           >
             <Text style={styles.navText}>Cases</Text>
@@ -144,7 +126,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5a8147',
     paddingHorizontal: 24,
     paddingTop: 16,
-    paddingBottom: 12,
+    paddingBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -159,106 +141,16 @@ const styles = StyleSheet.create({
   settingsButton: {
     padding: 8,
   },
-  greetingContainer: {
-    backgroundColor: '#5a8147',
-    paddingHorizontal: 24,
-    paddingBottom: 32,
-    paddingTop: 16,
-  },
-  greetingText: {
-    fontSize: 24,
-    color: '#fff',
-    fontWeight: '300',
-  },
   contentContainer: {
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
   contentContainerInner: {
-    paddingTop: 40,
-    paddingBottom: 100,
+    paddingTop: 24,
+    paddingBottom: 20,
   },
-  illustrationContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingHorizontal: 24,
-    alignItems: 'center',
-  },
-  personContainer: {
-    width: 140,
-    height: 280,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  personIllustration: {
-    width: '100%',
-    height: '100%',
-  },
-  documentPreview: {
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    padding: 24,
-    width: 180,
-    minHeight: 280,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
-    elevation: 5,
-  },
-  documentHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 24,
-    gap: 8,
-  },
-  documentDot: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    backgroundColor: '#d1d5db',
-  },
-  documentDotGray: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    backgroundColor: '#d1d5db',
-  },
-  documentItem: {
-    marginBottom: 20,
-  },
-  itemDot: {
-    width: 10,
-    height: 10,
-    borderRadius: 5,
-    backgroundColor: '#44692F',
-    marginBottom: 8,
-  },
-  itemLine: {
-    height: 3,
-    backgroundColor: '#44692F',
-    borderRadius: 2,
-    width: '60%',
-    marginBottom: 4,
-  },
-  itemLineLong: {
-    height: 3,
-    backgroundColor: '#44692F',
-    borderRadius: 2,
-    width: '90%',
-  },
-  itemLineShort: {
-    height: 3,
-    backgroundColor: '#e5e7eb',
-    borderRadius: 2,
-    width: '80%',
-  },
-  documentFooter: {
-    height: 20,
-    backgroundColor: '#44692F',
-    borderRadius: 10,
-    marginTop: 16,
-    width: '60%',
+  bottomSpacing: {
+    height: 100,
   },
   fab: {
     position: 'absolute',
@@ -291,6 +183,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 8,
+  },
+  navItemActive: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#fff',
   },
   navText: {
     color: '#fff',

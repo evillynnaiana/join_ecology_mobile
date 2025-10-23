@@ -7,22 +7,39 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
+
 import { CustomButton } from '../components/CustomButton';
 import { CustomInput } from '../components/CustomInput';
 
-
 const backgroundImage = require('../assets/images/plano_fundo.png');
+const AUTH_TOKEN_KEY = 'userAuthToken';
+
+const HARDCODED_EMAIL = 'teste@email.com';
+const HARDCODED_PASSWORD = 'senha123';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleLogin = () => {
-    router.replace('/home');
+  const handleLogin = async () => {
+    if (email === HARDCODED_EMAIL && password === HARDCODED_PASSWORD) {
+      try {
+        await SecureStore.setItemAsync(AUTH_TOKEN_KEY, 'user_is_logged_in');
+        Alert.alert('Sucesso', 'Login realizado!');
+        router.replace('/(auth)/home');
+      } catch (error) {
+        console.error('Erro ao salvar status de login:', error);
+        Alert.alert('Erro', 'Não foi possível registrar o login.');
+      }
+    } else {
+      Alert.alert('Erro', 'E-mail ou senha inválidos.');
+    }
   };
 
   return (
@@ -54,6 +71,7 @@ export default function LoginScreen() {
                   value={email}
                   onChangeText={setEmail}
                   keyboardType="email-address"
+                  autoCapitalize="none"
                   containerStyle={styles.inputSpacing}
                 />
                 <CustomInput
@@ -75,7 +93,7 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  fullScreenContainer: {
+   fullScreenContainer: {
     flex: 1,
     backgroundColor: '#000',
   },
@@ -83,7 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   backgroundImage: {
-    flex: 1, 
+    flex: 1,
     justifyContent: 'center',
   },
   overlay: {

@@ -5,19 +5,22 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  StatusBar,
   ScrollView,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
   const router = useRouter();
 
   const handleNavigation = (screen: string) => {
     if (screen === 'cases') {
-      router.push('/cases');
+      router.push('/(auth)/cases');
+    } else if (screen === 'areas') {
+      console.log('Navegando para Minhas áreas');
+    } else if (screen === 'home') {
+      console.log('Já está na Home');
     } else {
       console.log(`Navegando para: ${screen}`);
     }
@@ -25,105 +28,71 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#5a8147" />
-      
-      <SafeAreaView style={styles.safeArea} edges={['top']}>
-    
-        <View style={styles.header}>
-          <View style={styles.logoContainer}>
-            <Image
-              source={require('../assets/images/logo_black.png')}
-              style={styles.logo}
-              resizeMode="contain"
-            />
-          </View>
-          
-          <TouchableOpacity 
-            style={styles.settingsButton}
-            onPress={() => handleNavigation('settings')}
-          >
-            <Ionicons name="settings-outline" size={24} color="#fff" />
-          </TouchableOpacity>
-        </View>
-
-
-        <View style={styles.greetingContainer}>
-          <Text style={styles.greetingText}>Olá, Evillyn</Text>
-        </View>
-      </SafeAreaView>
-
-      <ScrollView 
+      <ScrollView
         style={styles.contentContainer}
         contentContainerStyle={styles.contentContainerInner}
       >
+        <Text style={styles.greetingText}>Olá, Evillyn</Text>
+
         <View style={styles.illustrationContainer}>
-          
-          <View style={styles.personContainer}>
+          <View >
             <Image
-              
-              style={styles.personIllustration}
-              resizeMode="contain"
+              source={require('../../assets/images/home.png')}
+          
             />
           </View>
-          
-         
           <View style={styles.documentPreview}>
             <View style={styles.documentHeader}>
               <View style={styles.documentDot} />
               <View style={styles.documentDotGray} />
             </View>
-            
             <View style={styles.documentItem}>
               <View style={styles.itemDot} />
               <View style={styles.itemLine} />
               <View style={styles.itemLineLong} />
             </View>
-            
             <View style={styles.documentItem}>
               <View style={styles.itemDot} />
               <View style={styles.itemLineShort} />
             </View>
-            
             <View style={styles.documentItem}>
               <View style={styles.itemDot} />
               <View style={styles.itemLineShort} />
             </View>
-            
             <View style={styles.documentFooter} />
           </View>
         </View>
       </ScrollView>
 
-     
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.fab}
-        onPress={() => handleNavigation('add')}
+        onPress={() => console.log('Adicionar Pressionado')}
         activeOpacity={0.8}
       >
         <Ionicons name="add" size={32} color="#fff" />
       </TouchableOpacity>
 
-  
       <SafeAreaView style={styles.bottomNavSafeArea} edges={['bottom']}>
         <View style={styles.bottomNav}>
-          <TouchableOpacity
-            style={styles.navItem}
+           <TouchableOpacity
+            style={[styles.navItem, styles.navItemActive]}
             onPress={() => handleNavigation('home')}
           >
             <Ionicons name="home" size={26} color="#fff" />
+            <Text style={[styles.navText, { fontWeight: 'bold' }]}>Início</Text>
           </TouchableOpacity>
-          
-          <TouchableOpacity
+           <TouchableOpacity
             style={styles.navItem}
             onPress={() => handleNavigation('areas')}
           >
+             <Ionicons name="map-outline" size={24} color="#fff" />
             <Text style={styles.navText}>Minhas áreas</Text>
           </TouchableOpacity>
-          
           <TouchableOpacity
             style={styles.navItem}
             onPress={() => handleNavigation('cases')}
           >
+             <Ionicons name="trophy-outline" size={24} color="#fff" />
             <Text style={styles.navText}>Cases</Text>
           </TouchableOpacity>
         </View>
@@ -137,45 +106,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
-  safeArea: {
-    backgroundColor: '#5a8147',
-  },
-  header: {
-    backgroundColor: '#5a8147',
-    paddingHorizontal: 24,
-    paddingTop: 16,
-    paddingBottom: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  logoContainer: {
-    flex: 1,
-  },
-  logo: {
-    width: 120,
-    height: 50,
-  },
-  settingsButton: {
-    padding: 8,
-  },
-  greetingContainer: {
-    backgroundColor: '#5a8147',
-    paddingHorizontal: 24,
-    paddingBottom: 32,
-    paddingTop: 16,
-  },
   greetingText: {
     fontSize: 24,
-    color: '#fff',
+    color: '#333',
     fontWeight: '300',
+    paddingHorizontal: 24,
+    marginBottom: 20,
+    marginTop: 20,
   },
   contentContainer: {
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
   contentContainerInner: {
-    paddingTop: 40,
     paddingBottom: 100,
   },
   illustrationContainer: {
@@ -183,17 +126,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingHorizontal: 24,
     alignItems: 'center',
+    marginTop: 20,
   },
-  personContainer: {
-    width: 140,
-    height: 280,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  personIllustration: {
-    width: '100%',
-    height: '100%',
-  },
+   
+
   documentPreview: {
     backgroundColor: '#fff',
     borderRadius: 20,
@@ -219,12 +155,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#d1d5db',
   },
   documentDotGray: {
-    width: 12,
+     width: 12,
     height: 12,
     borderRadius: 6,
-    backgroundColor: '#d1d5db',
+     backgroundColor: '#d1d5db',
   },
-  documentItem: {
+   documentItem: {
     marginBottom: 20,
   },
   itemDot: {
@@ -252,8 +188,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#e5e7eb',
     borderRadius: 2,
     width: '80%',
+    marginBottom: 4,
   },
-  documentFooter: {
+   documentFooter: {
     height: 20,
     backgroundColor: '#44692F',
     borderRadius: 10,
@@ -277,24 +214,32 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   bottomNavSafeArea: {
-    backgroundColor: '#44692F',
+     backgroundColor: '#44692F',
   },
   bottomNav: {
     flexDirection: 'row',
     backgroundColor: '#44692F',
-    paddingVertical: 12,
+    paddingVertical: 8,
     paddingHorizontal: 16,
     justifyContent: 'space-around',
     alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: '#3a592a',
   },
   navItem: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 8,
+    paddingVertical: 4,
+    flex: 1,
+  },
+  navItemActive: {
+     borderBottomWidth: 2,
+     borderBottomColor: '#fff',
+     paddingBottom: 2,
   },
   navText: {
     color: '#fff',
-    fontSize: 16,
-    fontWeight: '400',
+    fontSize: 10,
+    marginTop: 2,
   },
 });
